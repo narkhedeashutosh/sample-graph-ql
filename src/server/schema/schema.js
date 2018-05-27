@@ -14,13 +14,25 @@ export default `
     url: String
   }
 
+  type CartItem{
+    id: String
+    product: Product
+    quantity: Int
+  }
+
+  type Mutation{
+    addToCart(productId: Int): CartItem
+  }
+
   type Query {
     user: User
-    products: [Product]
+    products(searchString: String): [Product]
     product(id: Int!): Product
+    cartItems: [CartItem]
   }
 
   schema {
     query: Query
+    mutation: Mutation
   }
 `;

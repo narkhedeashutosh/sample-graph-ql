@@ -17,7 +17,16 @@ let products = [
   }
 ];
 
-let cartItems = [];
+let cartItems = [
+  {
+    id: 1,
+    productId: 2
+  },
+  {
+    id: 2,
+    productId: 1
+  }
+];
 
 export function getUser() {
   return {
@@ -27,10 +36,26 @@ export function getUser() {
   };
 }
 
-export function getProducts() {
-  return products;
+export function getProducts(searchString) {
+  if (!searchString) {
+    return products;
+  }
+  return products.filter(p => p.name.startsWith(searchString));
 }
 
 export function getProduct(id) {
   return products.find(product => product.id === id);
+}
+
+export function getCartItems() {
+  return cartItems;
+}
+
+export function addToCart(productId) {
+  const newCartItem = {
+    id: cartItems.length + 1,
+    productId: productId
+  };
+  cartItems.push(newCartItem);
+  return newCartItem;
 }
