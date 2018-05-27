@@ -15,7 +15,7 @@ export default `
   }
 
   type CartItem{
-    id: String
+    id: Int
     product: Product
     quantity: Int
   }
